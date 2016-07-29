@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Streets and Houses</title>
+	<meta charset="utf-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<button id="shortView" class="btn btn-default">
+	Short version
+</button>
+
+<button id="fullView"  class="btn btn-default">
+	Full version
+</button>
+
+
+<button id="maximal" class="btn btn-default">
+	Maximal
+</button>
+<button id="minimal" class="btn btn-default">
+	Minimal
+</button>
+
+<table style="width:100%; text-align: center;">
+	<tbody id="streetTable" >
+
+		<script type="text/template" id="streetTableTmpl">
+		<%  
+			_.forEach( items, function(item){
+		%>
+			<tr>
+				<td> <%= item.id %> </td>	
+				<td> <%= item.city %> </td>	
+				<td> <%= item.street %> </td>	
+				<td> <%= item.countOfHouses %> </td>
+				<td> <button class="DelEl btn btn-danger"" data-city-id="<%= item.id %>">Delete</button> </td>	
+			</tr>
+		<%
+			});
+		%>
+		</script>
+
+		<script type="text/template" id="streetTableShortTmpl">
+		<%  
+			_.forEach( items, function(item){
+		%>
+			<tr>
+				<td> <%= item.city %> </td>	
+				<td> <%= item.street %> </td>	
+				<td> <%= item.countOfHouses %> </td>
+				<td> <button class="DelEl btn btn-danger" data-city-id="<%= item.id %>">Delete</button> </td>	
+			</tr>
+		<%
+			});
+		%>
+		</script>
+
+	</tbody>
+	<thead id="tableHeads">
+		<script type="text/template" id="tableHeadTmpl">
+			<tr>
+				<%  
+					_.forEach( names, function(name){
+				%>
+					<td> <b> <%= name %> </b></td>
+				<%
+					});
+				%>
+				<td>
+					To Delete
+				</td>
+			</tr>
+		</script>
+
+		<script type="text/template" id="tableHeadShortTmpl">
+			<tr>
+				<%  
+					_.forEach( names, function(name){
+					if(name !== 'id') {
+				%>
+					<td> <b> <%= name %> </b></td>
+				<%
+					}
+					});
+				%>
+				<td>
+					To Delete
+				</td>
+			</tr>
+		</script>
+
+	</thead>
+</table>
+
+
+	<label>
+		City :
+		<input id="cityName" class="form-control"></input>
+	</label>
+	<label>
+		Street :
+		<input id="cityStreet" class="form-control"></input>
+	</label>
+	<label>
+		Count Of Houses :
+		<input id="cityCount" class="form-control"></input>
+	</label>
+	<button id="add" class="btn btn-success"> ADD </button>
+
+	<script type="text/javascript" src="js/libs/lodash.js"></script>
+	<script type="text/javascript" src="js/data.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
